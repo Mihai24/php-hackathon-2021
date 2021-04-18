@@ -36,7 +36,7 @@ Entities mapped in database:
 - Programmes (id int pk auto increment, participants int not null, start_at datetime, end_at datetime, room_id int not null fk, sport_id int not null fk)
 - Rooms (id int pk auto increment, room_number)
 - Sports (id int pk auto increment, sport_name varchar)
-- Users (id int pk auto increment, name varchar not null, cnp varchar not null, role_id int not null fk)
+- Users (id int pk auto increment, name varchar not null, cnp varchar not null, role_id default 1 fk)
 - Roles (id int pk auto increment, role_name varchar not null)
 
 ### Application architecture
