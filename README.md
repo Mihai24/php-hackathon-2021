@@ -92,6 +92,7 @@ In this section, please let us know what is your opinion about this experience a
 2. Do you think this type of selection process is suitable for you? \
     Yes, because I learned new things.
 3. What's your opinion about the complexity of the requirements? \
+    If you are ready you can go through the tasks.
 4. What did you enjoy the most? \
     The meetings and the booking overlap validation.
 5. What was the most challenging part of this anti hackathon? \
@@ -101,6 +102,6 @@ In this section, please let us know what is your opinion about this experience a
 7. Did you find the resources you were sent on your email useful? \
     Yes.
 8. Is there anything you would like to improve to your current implementation? \
-    Some validations.
+    Some validations. I can think of other validation methods.
 9. What would you change regarding this anti hackathon? \
    Nothing, it was awesome. Keep going like that!
