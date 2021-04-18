@@ -14,19 +14,55 @@ You have estimated it takes 4 weeks to build this solution. You have 2 days. Goo
 ## Technical documentation
 ### Data and Domain model
 In this section, please describe the main entities you managed to identify, the relationships between them and how you mapped them in the database.
+
+I managed to identify the following entities:
+- Bookings 
+- Programmes 
+- Rooms 
+- Sports 
+- Users 
+- Roles 
+
+The relationships between entities are the folloing:
+- Bookings and Rooms -> many to many 
+- Bookings and Users -> many to many 
+- Programmes and Bookings -> one to many 
+- Programmes and Rooms -> many to many 
+- Programmes and Sports -> many to many 
+- Roles and Users -> one to many 
+
+Entities mapped in database: 
+- Bookings (id int pk auto increment, user_id int not null fk, programmes_id int not null fk)
+- Programmes (id int pk auto increment, participants int not null, start_at datetime, end_at datetime, room_id int not null fk, sport_id int not null fk)
+- Rooms (id int pk auto increment, room_number)
+- Sports (id int pk auto increment, sport_name varchar)
+- Users (id int pk auto increment, name varchar not null, cnp varchar not null, role_id int not null fk)
+- Roles (id int pk auto increment, role_name varchar not null)
+
 ### Application architecture
 In this section, please provide a brief overview of the design of your application and highlight the main components and the interaction between them.
+
+I made this project using Laravel framework and the database using MySql. The main components of this project are the controllers, models, and routes. Basically in controllers I wrote the logic part and the validations. In models I made the relationships between models and I mapped them and in routes I defined the http requests to access and test the application.
+
 ###  Implementation
 ##### Functionalities
 For each of the following functionalities, please tick the box if you implemented it and describe its input and output in your application:
 
 [x] Brew coffee \
-[x] Create programme \
-[x] Delete programme \
-[ ] Book a programme 
+[x] Create programme - We have to access /api/programmes/1/add-programmes to create a new programme. Here we have to fill the following fields: participants, start_at, end_at, room_id, sport_id. If based on validation everything is right the new programme will be saved in database else the application will show an error message. That "1" inside the url represents the user with admin role.  \
+[x] Delete programme - For deleting we have to access api/programmes/1/delete-programmes/40. The "40" number represents the programme id. In case we have bookings registered on the programme we want to delete then we will delete all the bookings that are related to the programme before deleting the programme.\
+[x] Book a programme - /api/bookings/create-booking. Here we have to fill cnp and programme_id fields. If the validations are right the booking will be saved else the application will show error messages.
 
 ##### Business rules
 Please highlight all the validations and mechanisms you identified as necessary in order to avoid inconsistent states and apply the business logic in your application.
+
+Validations:
+- check if some requested values exists in database
+- CNP to check if it's unique inside database, the length is 13 and it's made out of numbers
+- check if the user is an administrator for creating and deleting programmes
+- check if the user can be registered at the programme
+- check if the programme has related bookings 
+- check the booking overlap time validation for every possibility
 
 ##### 3rd party libraries (if applicable)
 Please give a brief review of the 3rd party libraries you used and how/ why you've integrated them into your project.
@@ -41,20 +77,30 @@ Please fill in the following table with the technologies you used in order to wo
 | PHP | 7.4.1 |
 | Framework | Laravel 8.0 |
 | IDE | Atom |
+| API Client | Postman |
 
 ### Testing
 In this section, please list the steps and/ or tools you've used in order to test the behaviour of your solution.
 
+I used Postman to test the API calls.
+
 ## Feedback
 In this section, please let us know what is your opinion about this experience and how we can improve it:
 
-1. Have you ever been involved in a similar experience? If so, how was this one different?
-2. Do you think this type of selection process is suitable for you?
-3. What's your opinion about the complexity of the requirements?
-4. What did you enjoy the most?
-5. What was the most challenging part of this anti hackathon?
-6. Do you think the time limit was suitable for the requirements?
-7. Did you find the resources you were sent on your email useful?
-8. Is there anything you would like to improve to your current implementation?
-9. What would you change regarding this anti hackathon?
-
+1. Have you ever been involved in a similar experience? If so, how was this one different? \
+    No, this is my first time in a hackathon.
+2. Do you think this type of selection process is suitable for you? \
+    Yes, because I learned new things.
+3. What's your opinion about the complexity of the requirements? \
+4. What did you enjoy the most? \
+    The meetings and the booking overlap validation.
+5. What was the most challenging part of this anti hackathon? \
+    The bookings overlap validation.
+6. Do you think the time limit was suitable for the requirements? \
+    Yes.
+7. Did you find the resources you were sent on your email useful? \
+    Yes.
+8. Is there anything you would like to improve to your current implementation? \
+    Some validations.
+9. What would you change regarding this anti hackathon? \
+   Nothing, it was awesome. Keep going like that!
